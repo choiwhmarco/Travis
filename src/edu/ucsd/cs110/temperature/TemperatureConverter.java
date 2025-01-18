@@ -1,5 +1,6 @@
 package edu.ucsd.cs110.temperature;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,7 +18,7 @@ public class TemperatureConverter {
             System.out.println("\nAvailable units: C, F");
 
             System.out.print("Enter temperature to convert (i.e. 36.8 C, 451 F): ");
-            if((input = reader.readLine()) == null) System.exit(0);
+            if((input = BoundedLineReader.readLine(reader, 5_000_000)) == null) System.exit(0);
             String[] temp_in = input.split(" ");
             float temp_val = Float.parseFloat(temp_in[0]);
 
@@ -35,7 +36,7 @@ public class TemperatureConverter {
             }
 
             System.out.print("Enter the unit to convert TO: ");
-            if((input = reader.readLine()) == null) System.exit(0);
+            if((input = BoundedLineReader.readLine(reader, 5_000_000)) == null) System.exit(0);
 
             switch(input.toLowerCase().charAt(0))
             {
